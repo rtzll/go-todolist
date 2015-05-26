@@ -7,12 +7,19 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
+	"path/filepath"
 	"strconv"
 	"time"
 )
 
 func helloWorld(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "hello, world")
+}
+
+func getTemplateFile(filename string) string {
+	dir, _ := os.Getwd()
+	return filepath.Join(dir, "templates", filename)
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -23,7 +30,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 		io.WriteString(h, strconv.FormatInt(crutime, 10))
 		token := fmt.Sprintf("%x", h.Sum(nil))
 
-		t, _ := template.ParseFiles("login.gtpl")
+		t, _ := template.ParseFiles(getTemplateFile("login.gtpl"))
 		err := t.Execute(w, token)
 		if err != nil {
 			log.Fatal("template error: ", err)
