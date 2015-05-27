@@ -23,18 +23,15 @@ func getTemplateFile(filename string) string {
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("method:", r.Method) // get request method
+	fmt.Println("method:", r.Method) // print request method
+
 	if r.Method == "GET" {
-		crutime := time.Now().Unix()
 		h := md5.New()
-		io.WriteString(h, strconv.FormatInt(crutime, 10))
+		io.WriteString(h, strconv.FormatInt(time.Now().Unix(), 10))
 		token := fmt.Sprintf("%x", h.Sum(nil))
 
 		t, _ := template.ParseFiles(getTemplateFile("login.gtpl"))
-		err := t.Execute(w, token)
-		if err != nil {
-			log.Fatal("template error: ", err)
-		}
+		t.Execute(w, token)
 	} else {
 		// log in request
 		r.ParseForm()
