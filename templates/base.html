@@ -22,18 +22,18 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css">
   <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-  <!--link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">-->
+  <link rel="stylesheet" href="../static/css/custom.css">
   {{template "css" .}}
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <!--script type="text/javascript" src="{{ url_for('static', filename='js/site.js') }}"></script>-->
+  <script type="text/javascript" src="../static/js/site.js"></script>
   {{template "js" .}}
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <!-- <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}"> -->
+  <link rel="icon" type="image/png" href="../static/images/favicon.png'">
 </head>
 
 <body>
@@ -46,24 +46,24 @@
     <nav class="navbar">
       <div class="container">
         <ul class="navbar-list">
-          <!-- <li class="navbar-item"><a class="navbar-link" href="{{ url_for('main.index') }}">Flodolist</a></li> -->
+          <li class="navbar-item"><a class="navbar-link" href="/index">Flodolist</a></li>
           {{if .User}}
             <li class="navbar-item">
               <a class="navbar-link" href="#" data-popover="#moreNavPopover">{{ .User.name }}</a>
               <div id="moreNavPopover" class="popover">
                 <ul class="popover-list">
                   <li class="popover-item">
-                    <!-- <a class="popover-link" href="{{ url_for('main.todolist_overview') }}">Your Todolists</a> -->
+                    <a class="popover-link" href="/overview">Your Todolists</a>
                   </li>
                   <li class="popover-item">
-                    <!-- <a class="popover-link" href="{{ url_for('auth.logout') }}">logout</a> -->
+                    <a class="popover-link" href="/auth/logout">logout</a>
                   </li>
                 </ul>
               </div>
             </li>
           {{else}}
             <li class="navbar-item">
-              <!-- <a class="navbar-link" href="{{ url_for('auth.login') }}">Login</a> -->
+              <a class="navbar-link" href="/auth/login">Login</a>
           {{end}}
         </ul>
       </div>
