@@ -1,25 +1,24 @@
 {{template "base" .}}
 
-  {{ define "body" }}
-  <section class="header">
-    <h2 class="title">Login</h2>
-    <div class="row">
-      <div class="three columns value-prop"></div>
-      <div class="six columns">
-        {{if .From.errors}}
-          <div class="has-error"><strong>Unable to login. Typo?</strong></div>
-        {{end}}
-        <form method=post>
-          {{ .Form.hidden_tag }}
-          <dl>
-            <dd><input class="u-full-width" id="email_or_username" maxlength="128" name="email_or_username" placeholder="Email or Username" type="text" value="">
-            <dd><input class="u-full-width" id="password" name="password" placeholder="Password" type="password" value="">
-            <dt><input id="submit" name="submit" type="submit" value="Log In">
-          </dl>
-        </form>
-        <p>New user? <a href="/auth/register">Click here to register</a>.</p>
-      </div>
+{{ define "body" }}
+<section class="header">
+  <h2 class="title">Login</h2>
+  <div class="row">
+    <div class="three columns value-prop"></div>
+    <div class="six columns">
+<!--       {{if .From.errors}}
+        <div class="has-error"><strong>Unable to login. Typo?</strong></div>
+      {{end}} -->
+      <form method=post>
+        <!-- <input type="hidden" name="token" value="{{.Form.hidden_tag}}"> -->
+        <dl>
+          <dd><input class="u-full-width" id="email_or_username" maxlength="128" name="email_or_username" placeholder="Email or Username" type="text" value="">
+          <dd><input class="u-full-width" id="password" name="password" placeholder="Password" type="password" value="">
+          <dt><input id="submit" name="submit" type="submit" value="Log In">
+        </dl>
+      </form>
+      <p>New user? <a href="/auth/register">Click here to register</a>.</p>
     </div>
-  </section>
-  {{end}}
+  </div>
+</section>
 {{end}}
