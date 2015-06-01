@@ -22,9 +22,14 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal("Error while parsing template: ", err)
 	}
-	// user := new(User)
-	// user.Name = "alice"
-	t.Execute(w, nil)
+	user := new(User)
+	user.Name = getNameFromUrl(r)
+	t.Execute(w, user)
+}
+
+func getNameFromUrl(r *http.Request) string {
+	path := r.URL.Path
+	return
 }
 
 func getTemplateFile(filename string) string {
