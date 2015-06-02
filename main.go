@@ -10,6 +10,7 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -28,8 +29,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
 }
 
 func getNameFromUrl(r *http.Request) string {
-	path := r.URL.Path
-	return
+	return strings.Replace(r.URL.Path, "/", "", -1)
 }
 
 func getTemplateFile(filename string) string {
