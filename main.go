@@ -19,12 +19,12 @@ type User struct {
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {
+	log.Println("Calling hello func")
 	t, err := template.ParseFiles(getTemplateFile("hello.html"))
 	if err != nil {
 		log.Fatal("Error while parsing template: ", err)
 	}
-	user := new(User)
-	user.Name = getNameFromUrl(r)
+	user := User{Name: getNameFromUrl(r)}
 	t.Execute(w, user)
 }
 
@@ -38,7 +38,7 @@ func getTemplateFile(filename string) string {
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("method:", r.Method) // print request method
+	log.Println("Calling login func")
 
 	if r.Method == "GET" {
 		h := md5.New()
@@ -60,9 +60,9 @@ func login(w http.ResponseWriter, r *http.Request) {
 		} else {
 			// give error if no token
 		}
-		fmt.Println("username length:", len(r.Form["username"][0]))
-		fmt.Println("username:", template.HTMLEscapeString(r.Form.Get("username"))) // print in server side
-		fmt.Println("password:", template.HTMLEscapeString(r.Form.Get("password")))
+		log.Println("username length:", len(r.Form["username"][0]))
+		log.Println("username:", template.HTMLEscapeString(r.Form.Get("username"))) // print in server side
+		log.Println("password:", template.HTMLEscapeString(r.Form.Get("password")))
 		template.HTMLEscape(w, []byte(r.Form.Get("username"))) // respond to client
 	}
 }
