@@ -52,7 +52,6 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		}
 		t.Execute(w, token)
 	} else {
-		// log in request
 		r.ParseForm()
 		token := r.Form.Get("token")
 		if token != "" {
@@ -60,8 +59,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		} else {
 			// give error if no token
 		}
-		log.Println("username:", template.HTMLEscapeString(r.Form.Get("username"))) // print in server side
+		log.Println("username:", template.HTMLEscapeString(r.Form.Get("username")))
 		log.Println("password:", template.HTMLEscapeString(r.Form.Get("password")))
-		template.HTMLEscape(w, []byte(r.Form.Get("username"))) // respond to client
 	}
 }
